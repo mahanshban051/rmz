@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزومه طراح وب | 13</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /*این وبسایت اوپن سورس نیست درصورت استفاده از کد ومشاهده قانونی پیگیری خواهد شد*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #fff;
+            --primary-color: #6473ff;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        .dark-theme {
+            --bg-color: #fff;
+            --text-color: #0d1117;
+        }
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 1000;
+            transition: transform 0.1s ease;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 17, 31, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        .theme-toggler {
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .theme-toggler i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        .header {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 4rem;
+        }
+        .profile {
+            margin-top: 80px;
+        }
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(100, 115, 255, 0.5);
+        }
+        .glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 220px;
+            height: 220px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            filter: blur(20px);
+            z-index: -1;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes glow {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .name {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .title {
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+        .intro-text {
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+            color: var(--text-color);
+        }
+        .social-icons a {
+            color: var(--primary-color);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--text-color);
+        }
+        .section {
+            margin-bottom: 6rem;
+            text-align: center;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            padding: 5rem 0;
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-image {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(100, 115, 255, 0.5);
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+        .glow-effect {
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: glow 3s ease-in-out infinite;
+        }
+        .about-text {
+            max-width: 400px;
+            padding: 50px;
+            text-align: right;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: #0d1117;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            background-color: #4c58b8;
+            transform: translateY(-3px);
+        }
+        .education {
+            padding: 5rem 0;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+        .education h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .education-card {
+            background-color: #1a202c;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .education-card:hover {
+            transform: translateY(-10px);
+        }
+        .education-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .education-card p {
+            font-size: 1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .services {
+            padding: 5rem 0;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+        .services h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            position: relative;
+            background-color: #1a202c;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg);
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .service-card p {
+            font-size: 1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .service-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(100, 115, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .service-card:hover .service-hover {
+            opacity: 1;
+        }
+        .service-hover h3 {
+            font-size: 1.5rem;
+            color: #0d1117;
+            margin-bottom: 1rem;
+        }
+        .service-hover p {
+            font-size: 1rem;
+            color: #0d1117;
+            line-height: 1.6;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .skill i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .skill h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        .skill-bar {
+            height: 10px;
+            background-color: #1a202c;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: var(--primary-color);
+            transition: width 1.5s ease;
+        }
+        .skill:hover .skill-bar::before {
+            width: calc(var(--percent) * 1%);
+        }
+        .skill-percent {
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 17, 31, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        .portfolio-item:hover .overlay {
+            opacity: 1;
+        }
+        .overlay h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .overlay p {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .view-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            border: 2px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .view-more:hover {
+            background-color: var(--primary-color);
+            color: #0d1117;
+            transform: translateY(-3px);
+        }
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .contact-box {
+            background-color: #1a202c;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            width: 250px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--primary-color);
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+        }
+        .contact-box:hover::before {
+            transform: translateX(0);
+        }
+        .contact-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .contact-box i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .contact-box h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+        .contact-box p {
+            font-size: 1rem;
+            color: #8892b0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--text-color);
+        }
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0.5rem;
+            }
+            .about {
+                flex-direction: column;
+            }
+            .about-image {
+                width: 90%;
+                height: auto;
+                margin-left: 10px;
+            }
+        }
+        @media (hover: none) {
+            .cursor {
+                display: none;
+            }
+        }
+        .fab.fa-rubika {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            position: relative;
+        }
+        .fab.fa-rubika::before {
+            content: '';
+            display: block;
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image: url('https://i.imgur.com/cBLMxzv.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(10, 17, 31, 0.9);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .nav.active {
+                display: flex;
+            }
+            .nav-link {
+                padding: 1rem;
+                text-align: center;
+            }
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background-color: var(--primary-color);
+            color: #0d1117;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            background-color: #4c58b8;
+            transform: translateY(-3px);
+        }
+        .contact-box {
+            background-color: #1a202c;
+            color: var(--text-color);
+        }
+        .contact-box p {
+            color: #8892b0;
+        }
+        .about {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+        .about-image {
+            width: 90%;
+            max-width: 600px;
+            height: auto;
+            margin: 0 auto;
+        }
+        .about-text {
+            max-width: 100%;
+            padding: 1rem;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .cursor {
+                display: none;
+            }
+        }
+        /* ====== CSS: چرا من (افزوده یا جایگزین کن در فایل CSS) ====== */
+.why-me { padding: 4rem 1.5rem; direction: rtl; }
+.why-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 2.5rem; align-items: center; }
+
+/* عنوان اختصاصی که ترجمه‌گر آن را نادیده می‌گیرد */
+.why-title { font-size: 2.25rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+
+/* متن مقدمه */
+.why-lead { color: var(--text-color); opacity: 0.95; margin-bottom: 1.25rem; line-height: 1.8; max-width: 60ch; }
+
+/* لیست آیتم‌ها */
+.why-list { list-style: none; padding: 0; margin: 1rem 0 1.5rem 0; display: grid; gap: 1rem; }
+
+/* مهم: تراز مرکزی تا همه آیکون‌ها و متن‌ها در یک خط قرار بگیرند */
+.why-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: center; /* مرکز عمودی برای هم‌ترازی آیکون و متن */
+}
+
+/* آیکون‌ها به صورت فلکس؛ ابعاد ثابت؛ flex-shrink=0 برای جلوگیری از تغییر اندازه */
+.why-icon {
+  min-width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(100,115,255,0.06), rgba(100,115,255,0.02));
+  border-radius: 10px;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* اندازه و تراز ثابت برای SVG داخل آیکون */
+.why-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  color: var(--primary-color);
+}
+
+/* متن آیتم‌ها به صورت منعطف تا فضای باقیمانده را بگیرند */
+.why-item { flex: 1; }
+.why-item h4 { margin: 0; color: var(--text-color); font-size: 1.05rem; font-weight: 700; }
+.why-item p { margin: 0.25rem 0 0 0; color: #bfc7e6; font-size: 0.95rem; line-height: 1.6; }
+
+/* CTA */
+.why-cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: flex-start; }
+.btn-primary { background: var(--primary-color); color: #0d1117; padding: 0.6rem 1.25rem; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+.btn-outline { border: 2px solid rgba(100,115,255,0.18); color: var(--text-color); padding: 0.55rem 1rem; border-radius: 8px; text-decoration: none; background: transparent; display: inline-flex; align-items: center; justify-content: center; }
+
+/* کارت سمت راست */
+.why-right { display: flex; justify-content: center; align-items: center; }
+.why-card { width: 100%; background: linear-gradient(180deg, rgba(100,115,255,0.06), rgba(100,115,255,0.03)); border-radius: 16px; padding: 1.25rem; box-shadow: 0 8px 30px rgba(10,15,30,0.5); border: 1px solid rgba(100,115,255,0.08); }
+.why-card-inner h3 { margin: 0 0 0.5rem 0; color: var(--primary-color); font-size: 1.15rem; }
+.why-card-inner p { margin: 0 0 1rem 0; color: #c9d0ff; font-size: 0.95rem; line-height: 1.6; }
+
+.stat-list { display: flex; gap: 1rem; flex-wrap: wrap; }
+.stat { background: rgba(13,17,23,0.05); padding: 0.6rem 0.9rem; border-radius: 10px; min-width: 110px; text-align: center; }
+.stat-num { display: block; font-weight: 800; color: var(--primary-color); font-size: 1.1rem; }
+.stat-label { display: block; font-size: 0.85rem; color: #9fb0ff; margin-top: 0.25rem; }
+
+/* واکنش‌گرایی */
+@media (max-width: 900px) {
+  .why-inner { grid-template-columns: 1fr; text-align: center; }
+  .why-left { order: 2; }
+  .why-right { order: 1; }
+  .why-list li { justify-content: center; }
+  .why-item p { text-align: center; }
+  .why-cta { justify-content: center; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <header class="navbar">
+        <button id="language-toggle" class="btn">English</button>
+    <div class="navbar-container">
+        <a href="#" class="logo">13</a>
+        <nav class="nav" id="nav">
+            <a href="#about" class="nav-link">درباره من</a>
+            <a href="#skills" class="nav-link">مهارت‌ها</a>
+            <a href="#services" class="nav-link">خدمات</a>
+            <a href="#portfolio" class="nav-link">نمونه کارها</a>
+            <a href="#contact" class="nav-link">تماس با من</a>
+        </nav>
+        <div class="theme-toggler">
+            <i class="fas fa-moon" id="theme-toggler"></i>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+    <div class="container">
+        <header class="header">
+            <div class="profile">
+                <div class="profile-img-container">
+                    <img src="https://i.imgur.com/xEaa2tM.jpegv" alt="پروفایل" class="profile-img">
+                    <div class="glow"></div>
+                </div>
+                <h1 class="name">13</h1>
+                <p class="title">طراح وب و توسعه‌دهنده فرانت‌اند</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/%D9%85%D8%A7%D9%87%D8%A7%D9%86-%D8%B4%D8%A8%D8%A7%D9%86-28976b395/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BdFEyS2abRTqPwy7sVe%2BQbw%3D%3D" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/mahanshban051" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/thirteen.original?igsh=NzNmbzNrbDAxZmF0" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="intro-text">
+                <p>
+                    سلام! من ماهان(13)، یک طراح وب خلاق و توسعه‌دهنده فرانت‌اند با اشتیاق به ایجاد تجربه‌های دیجیتال بی‌نظیر هستم. با ترکیبی از هنر و تکنولوژی، وب‌سایت‌هایی طراحی می‌کنم که نه تنها زیبا هستند، بلکه کارآمد و کاربرپسند نیز می‌باشند. هدف من این است که ایده‌های شما را به واقعیت تبدیل کنم و حضور آنلاین شما را به سطح بعدی برسانم.
+                </p>
+            </div>
+            <div class="center-container">
+                <a href="#about" class="btn">درباره من</a>
+            </div>
+        </header>
+        <section id="about" class="section about">
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="glow-effect"></div>
+                <div class="about-text">
+                    <h2>درباره من</h2>
+                    <p>
+                        با تجربه در طراحی و توسعه وب، همیشه به دنبال ایجاد راه‌حل‌های خلاقانه و کارآمد هستم. از کار کردن با فناوری‌های جدید لذت می‌برم و معتقد به یادگیری مداوم هستم.
+                    </p>
+                    <a href="#contact" class="btn">تماس با من</a>
+                </div>
+            </div>
+         </div>
+        </section>
+        <div class="center-container">
+            <a href="https://pdfhost.io/v/6cJ7vzRZZ7_%C3%98%C2%AF%C3%98%C2%B1%C3%98%C2%A8%C3%98%C2%A7%C3%98%C2%B1%C3%99_%C3%99%C3%99" class="btn">دانلود رزومه</a>
+        </div>
+        <section id="education" class="section education">
+            <h2>تحصیلات</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>تحصیلات</h3>
+                    <p>در حال حاضر، دانش‌آموز کلاس یازدهم در رشته کامپیوتر هستم و ۱۷ سال سن دارم. در طول این سال‌ها، علاقه وافر من به فناوری اطلاعات و برنامه‌نویسی، مرا به سمت یادگیری مهارت‌های متنوع در این حوزه سوق داده است. با اشتیاق و تلاش مداوم، سعی در گسترش دانش و توانایی‌های خود در زمینه‌های مختلف فناوری دارم.</p>
+                </div>
+                <div class="education-card">
+                    <h3>مدارک فنی و حرفه ای</h3>
+                    <p>دارای گواهینامه معتبر ICDL هستم که مهارت‌های پایه و کاربردی من در استفاده از کامپیوتر، از جمله کار با نرم‌افزارهای اداری، اینترنت و مدیریت فایل‌ها را تأیید می‌کند. همچنین، با کسب مدرک Photoshop، دانش و توانایی خود را در حوزه طراحی گرافیکی گسترش داده‌ام و از این مهارت در پروژه‌های مختلف بهره برده‌ام.</p>
+                </div>
+                <div class="education-card">
+                    <h3>مدرک های فنی حرفه ای</h3>
+                    <p>همچنین، مدرک کدنویسی و برنامه‌نویسی را نیز کسب کرده‌ام که به من آموخته است چگونه با زبان‌های برنامه‌نویسی مختلف کار کنم و پروژه‌های نرم‌افزاری را توسعه دهم </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education" class="section education">
+            <h2>تجربه</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>طراحی و توسعه وب‌سایت‌</h3>
+                    <p>در چند سال اخیر، به‌صورت مداوم در زمینه طراحی و پیاده‌سازی وب‌سایت‌های مختلف فعالیت داشته‌ام. تمرکز من بر ایجاد رابط‌های کاربری حرفه‌ای با استفاده از HTML، CSS و JavaScript بوده است. در این پروژه‌ها همواره تلاش کرده‌ام تا علاوه بر طراحی جذاب و کاربرپسند، از Tailwind برای تسریع فرآیند توسعه و بهبود کارایی استفاده کنم.</p>
+                </div>
+                <div class="education-card">
+                    <h3>طراحی و گرافیک</h3>
+                      <p>در زمینه طراحی گرافیک، تجربه‌ای گسترده در ایجاد لوگو، بنر، تصاویر انیمیشنی و سایر عناصر بصری دارم. با استفاده از ابزارهای حرفه‌ای، طراحی‌های من هویت بصری برندها را به طور موثری تقویت کرده است.</p>
+                </div>
+                <div class="education-card">
+                    <h3>
+                        طراحی برنامه‌های موبایل
+                    </h3> (iOS,Android)
+                    <p>من
+تجربه خوبی در طراحی و توسعه اپلیکیشن‌های موبایل (اندروید و iOS) دارم. تاکنون چندین اپلیکیشن برای نیازهای مختلف کاربران ساخته‌ام (در فاز تست و توسعه)، و همواره تلاش کرده‌ام رابط کاربری آن‌ها ساده، جذاب و کاربرپسند باشد. این تجربه به من کمک کرده است تا با چالش‌های متنوع دنیای موبایل آشنا شوم و توانایی حل مسائل و بهینه‌سازی تجربه کاربری را به دست آور</p>
+                </div>
+            </div>
+        </section>
+        <!-- ====== HTML: چرا من (قرار دهید داخل <body> در نقطه دلخواه) ====== -->
+<section id="why-me" class="section why-me" dir="rtl" aria-labelledby="why-title">
+  <div class="why-inner">
+    <div class="why-left">
+      <!-- عنوان با کلاس محافظ تا توسط اسکریپت ترجمه تغییر نکند -->
+      <h2 id="why-title" class="why-title no-translate" data-no-translate="true">چرا من</h2>
+
+      <p class="why-lead">طراحی که محصولات دیجیتال را مثل یک اثر هنری می‌سازد؛ تمرکز من همیشه روی تجربه کاربری، بهینه‌سازی و هویت بصری است.</p>
+
+      <ul class="why-list">
+        <li>
+          <span class="why-icon" aria-hidden="true" role="img" aria-label="سرعت">
+            <!-- SVG آیکون سرعت -->
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M13 2L3 14h9l-1 8L21 10h-8z"></path>
+            </svg>
+          </span>
+          <div class="why-item">
+            <h4>سرعت و عملکرد</h4>
+            <p>کد تمیز، لود سریع و بهترین شیوه‌ها برای عملکرد واقعی سایت.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="why-icon" aria-hidden="true" role="img" aria-label="هدف">
+            <!-- SVG آیکون هدف -->
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </span>
+          <div class="why-item">
+            <h4>تمرکز روی هدف کسب‌وکار</h4>
+            <p>طراحی با هدف تبدیل، تعامل و نمایش حرفه‌ای برند شما.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="why-icon" aria-hidden="true" role="img" aria-label="دسترسی">
+            <!-- SVG آیکون دسترسی -->
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2v6"></path>
+              <path d="M12 22v-6"></path>
+              <path d="M4.93 4.93l4.24 4.24"></path>
+              <path d="M19.07 19.07l-4.24-4.24"></path>
+            </svg>
+          </span>
+          <div class="why-item">
+            <h4>دسترسی و تجربه کاربری</h4>
+            <p>رعایت اصول دسترسی، ناوبری روان و تجربه کاربری یکپارچه.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="why-cta">
+        <a href="#contact" class="btn btn-primary">شروع همکاری</a>
+        <a href="#portfolio" class="btn btn-outline">نمونه‌کارها</a>
+      </div>
+    </div>
+
+    <div class="why-right" aria-hidden="true">
+      <div class="why-card">
+        <div class="why-card-inner">
+          <h3>نتایج قابل اندازه‌گیری</h3>
+          <p>افزایش سرعت صفحه، بهبود نرخ تبدیل و تجربه‌ای که مشتریان دوست دارند.</p>
+          <div class="stat-list">
+            <div class="stat">
+              <span class="stat-num">+30%</span>
+              <span class="stat-label">افزایش تعامل</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">+50%</span>
+              <span class="stat-label">سرعت لود</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <section id="skills" class="section">
+            <h2>مهارت‌ها</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML</h3>
+                    <div class="skill-bar" data-percent="90"></div>
+                    <span class="skill-percent">۹۰٪</span>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS</h3>
+                    <div class="skill-bar" data-percent="90"></div>
+                    <span class="skill-percent">۹۰٪</span>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <div class="skill-bar" data-percent="70"></div>
+                    <span class="skill-percent">۷۰٪</span>
+                </div>
+                <div class="skill">
+                    <i class="bx bxl-tailwind-css"></i>
+                    <h3>Tailwind</h3>
+                    <div class="skill-bar" data-percent="80"></div>
+                    <span class="skill-percent">۸۰٪</span>
+                </div>
+            </div>
+        </section>
+        <section id="skills" class="section">
+            <h2>مهارت‌ تخصصی</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <i class="fas fa-brush"></i>
+                    <h3>طراح گرافیک دیجیتال</h3>
+                    <div class="skill-bar" data-percent="100"></div>
+                    <span class="skill-percent">۱۰۰٪</span>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-pen"></i>
+                    <h3>دیزاین سایت</h3>
+                    <div class="skill-bar" data-percent="70"></div>
+                    <span class="skill-percent">۷۰٪</span>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3> وب و رابط کاربری UI</h3>
+                    <div class="skill-bar" data-percent="70"></div>
+                    <span class="skill-percent">۷۰٪</span>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-signature"></i>
+                    <h3>طراحی لوگو و هویت بصری</h3>
+                    <div class="skill-bar" data-percent="100"></div>
+                    <span class="skill-percent">۱۰۰٪</span>
+                </div>
+            </div>
+        </section>
+        <section id="services" class="section services">
+    <h2>خدمات من</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+            <h3>طراحی رابط کاربری (UI)</h3>
+            <p>طراحی رابط کاربری زیبا و ساده برای وب‌سایت‌ها با استفاده از اصول طراحی مدرن.</p>
+            <div class="service-hover">
+                <h3>UI Design</h3>
+                <p>ایجاد تجربه بصری دلپذیر و کاربرپسند.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-code"></i>
+            </div>
+            <h3>توسعه فرانت‌اند</h3>
+            <p>توسعه صفحات وب واکنش‌گرا و داینامیک با استفاده از HTML, CSS, و JavaScript.</p>
+            <div class="service-hover">
+                <h3>Front-End Dev</h3>
+                <p>ایجاد صفحات وب مدرن و کاربرپسند.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-draw-polygon"></i>
+            </div>
+            <h3>طراحی گرافیک</h3>
+            <p>طراحی گرافیک حرفه‌ای برای لوگوها، بنرها و محتوای بصری.</p>
+            <div class="service-hover">
+                <h3>Graphic Design</h3>
+                <p>ایجاد محتوای بصری جذاب و تاثیرگذار.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fab fa-html5"></i>
+            </div>
+            <h3>کدنویسی HTML و CSS</h3>
+            <p>نوشتن کد تمیز و بهینه برای ساختار و استایل صفحات وب.</p>
+            <div class="service-hover">
+                <h3>HTML & CSS Coding</h3>
+                <p>ایجاد ساختار و استایل مدرن برای وب‌سایت‌ها.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <h3>ساخت رزومه و سایت شخصی</h3>
+            <p>طراحی و توسعه رزومه آنلاین و سایت شخصی حرفه‌ای.</p>
+            <div class="service-hover">
+                <h3>Personal Website & Resume</h3>
+                <p>نمایش مهارت‌ها و تجربه‌ها به صورت حرفه‌ای.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h3>ساخت انواع ربات‌ها</h3>
+            <p>توسعه ربات‌های تلگرام، اینستاگرام و سایر پلتفرم‌ها.</p>
+            <div class="service-hover">
+                <h3>Bot Development</h3>
+                <p>اتوماسیون و مدیریت پلتفرم‌ها با ربات‌ها.</p>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="portfolio" class="section">
+            <h2>نمونه کارها</h2>
+            <div class="portfolio-grid">
+                 <!--
+                <div class="portfolio-item">
+                    <img src="https://i.imgur.com/AlasnsK.jpeg" alt="پروژه ۱">
+                  
+                    <div class="overlay">
+                        <h3>پروژه ۲</h3>
+                        <p>توضیح کوتاه درباره پروژه</p>
+                        <a href="https://mahanshban051.github.io/test/
+                        " class="view-more">مشاهده بیشتر</a>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <img src="img/rmz.png" alt="پروژه ۱">
+                         <div class="overlay">
+                            <h3>نمونه صفحه شخصی </h3>
+                            <p>یک وبسایت شخصی با طراحی مدرن و تجربه کاربری ساده و جذاب.</p>
+                            <a href="nemoone rmz.HTML" class="view-more">مشاهده بیشتر</a>
+                        </div>
+                    </div>
+                                    -->
+                    <div class="portfolio-item">
+                        <img src="https://i.imgur.com/7lSCrg3.png" alt="پروژه ۱">
+                         <div class="overlay">
+                            <h3>نمونه صفحه شخصی </h3>
+                            <p>یک وبسایت شخصی با طراحی مدرن و تجربه کاربری ساده و جذاب.</p>
+                            <a href="https://api-code.ir/max/html/Q3.html" class="view-more">مشاهده بیشتر</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="contact" class="section">
+            <h2>تماس با من</h2>
+            <div class="contact-container">
+                <a href="tel:+989159006917">
+                <div class="contact-box">
+                    <i class="fas fa-phone"></i>
+                    <h3>تلفن</h3>
+                    <p>09159006917</p>
+                </div>
+                </a>
+                <a href="sms:+989159006917">
+                <div class="contact-box">
+                    <i class="fas fa-envelope"></i>
+                    <h3>ایمیل</h3>
+                    <p>soon</p>
+                </div>
+                </a>
+                <a href="https://t.me/uvyvw">
+                <div class="contact-box">
+                    <i class="fab fa-telegram"></i>
+                    <h3>تلگرام</h3>
+                    <p>@mvhvn_313</p>
+                </div>
+                </a>
+                <a href="https://rubika.ir/mvhvn_13" >
+                <div class="contact-box">
+                <i class="fab fa-rubika"></i>
+                <h3>روبیکا</h3>
+                <p>@mvhvn_13</p>
+                </div>
+                </a>
+            </div>
+        </section>
+        <footer class="footer">
+            <p>&copy; ۲۰۲۵| طراحی و توسعه نوسط ۱۳</p>
+        </footer>
+    </div>
+    <script>
+(function() {
+  const STORAGE_KEY = 'site_lang';
+  const langCycle = ['fa', 'en', 'ar'];
+  let currentLang = localStorage.getItem(STORAGE_KEY) || 'fa';
+
+  const translations = {
+    fa: {
+      "#language-toggle": "English",
+      ".logo": "13",
+
+      ".nav .nav-link:nth-of-type(1)": "درباره من",
+      ".nav .nav-link:nth-of-type(2)": "مهارت‌ها",
+      ".nav .nav-link:nth-of-type(3)": "خدمات",
+      ".nav .nav-link:nth-of-type(4)": "نمونه کارها",
+      ".nav .nav-link:nth-of-type(5)": "تماس با من",
+
+      ".name": "13",
+      ".title": "طراح وب و توسعه‌دهنده فرانت‌اند",
+      ".intro-text p": "سلام! من ماهان(13)، یک طراح وب خلاق و توسعه‌دهنده فرانت‌اند با اشتیاق به ایجاد تجربه‌های دیجیتال بی‌نظیر هستم. با ترکیبی از هنر و تکنولوژی، وب‌سایت‌هایی طراحی می‌کنم که نه تنها زیبا هستند، بلکه کارآمد و کاربرپسند نیز می‌باشند. هدف من این است که ایده‌های شما را به واقعیت تبدیل کنم و حضور آنلاین شما را به سطح بعدی برسانم.",
+      ".center-container a[href='#about']": "درباره من",
+      ".center-container a[href*='pdfhost']": "دانلود رزومه",
+
+      "#about h2": "درباره من",
+      "#about p": "با تجربه در طراحی و توسعه وب، همیشه به دنبال ایجاد راه‌حل‌های خلاقانه و کارآمد هستم. از کار کردن با فناوری‌های جدید لذت می‌برم و معتقد به یادگیری مداوم هستم.",
+      "#about .btn": "تماس با من",
+
+      "#education h2": "تحصیلات",
+      ".education-grid .education-card:nth-of-type(1) h3": "تحصیلات",
+      ".education-grid .education-card:nth-of-type(1) p": "در حال حاضر، دانش‌آموز کلاس یازدهم در رشته کامپیوتر هستم و ۱۷ سال سن دارم. علاقه وافر من به فناوری اطلاعات و برنامه‌نویسی موجب شده مهارت‌های متنوعی در این حوزه بیاموزم.",
+      ".education-grid .education-card:nth-of-type(2) h3": "مدارک فنی و حرفه ای",
+      ".education-grid .education-card:nth-of-type(2) p": "دارای گواهینامه معتبر ICDL و مدرک Photoshop هستم که مهارت‌های من در کامپیوتر و طراحی را تأیید می‌کند.",
+      ".education-grid .education-card:nth-of-type(3) h3": "مدرک های فنی حرفه ای",
+      ".education-grid .education-card:nth-of-type(3) p": "مدرک کدنویسی و برنامه‌نویسی را نیز کسب کرده‌ام و با زبان‌های مختلف برنامه‌نویسی آشنا هستم.",
+
+      /* تجربه (اگر در DOM جداست از education، selectorها را مطابق ساختارت تنظیم کن) */
+      ".section.education + .section h2": "تجربه",
+      ".education-grid .education-card:nth-of-type(4) h3": "طراحی و توسعه وب‌سایت‌",
+      ".education-grid .education-card:nth-of-type(4) p": "در چند سال اخیر، در طراحی و پیاده‌سازی وب‌سایت‌های متنوع فعالیت داشته‌ام؛ تمرکز بر رابط کاربری، عملکرد و تجربه کاربری بوده است.",
+      ".education-grid .education-card:nth-of-type(5) h3": "طراحی و گرافیک",
+      ".education-grid .education-card:nth-of-type(5) p": "تجربه در طراحی لوگو، بنر و محتوای بصری با ابزارهای حرفه‌ای برای تقویت هویت بصری برندها.",
+      ".education-grid .education-card:nth-of-type(6) h3": "طراحی برنامه‌های موبایل",
+      ".education-grid .education-card:nth-of-type(6) p": "تجربه طراحی و توسعه اپلیکیشن‌های موبایل (Android و iOS) با تمرکز بر UX و بهینه‌سازی عملکرد.",
+
+      "#skills h2": "مهارت‌ها",
+      "#skills + .section h2": "مهارت‌ تخصصی",
+      "#skills .skill:nth-of-type(1) h3": "HTML",
+      "#skills .skill:nth-of-type(2) h3": "CSS",
+      "#skills .skill:nth-of-type(3) h3": "JavaScript",
+      "#skills .skill:nth-of-type(4) h3": "Tailwind",
+      "#skills .skill:nth-of-type(1) .skill-percent": "۹۰٪",
+      "#skills .skill:nth-of-type(2) .skill-percent": "۹۰٪",
+      "#skills .skill:nth-of-type(3) .skill-percent": "۷۰٪",
+      "#skills .skill:nth-of-type(4) .skill-percent": "۸۰٪",
+
+      "#services h2": "خدمات من",
+      ".services-grid .service-card:nth-of-type(1) h3": "طراحی رابط کاربری (UI)",
+      ".services-grid .service-card:nth-of-type(1) p": "طراحی رابط کاربری زیبا و ساده برای وب‌سایت‌ها با اصول طراحی مدرن.",
+      ".services-grid .service-card:nth-of-type(2) h3": "توسعه فرانت‌اند",
+      ".services-grid .service-card:nth-of-type(2) p": "توسعه صفحات وب واکنش‌گرا و داینامیک با HTML, CSS و JavaScript.",
+      ".services-grid .service-card:nth-of-type(3) h3": "طراحی گرافیک",
+      ".services-grid .service-card:nth-of-type(3) p": "طراحی گرافیک حرفه‌ای برای لوگوها، بنرها و محتوای بصری.",
+      ".services-grid .service-card:nth-of-type(4) h3": "کدنویسی HTML و CSS",
+      ".services-grid .service-card:nth-of-type(4) p": "نوشتن کد تمیز و بهینه برای ساختار و استایل صفحات وب.",
+      ".services-grid .service-card:nth-of-type(5) h3": "ساخت رزومه و سایت شخصی",
+      ".services-grid .service-card:nth-of-type(5) p": "طراحی و توسعه رزومه آنلاین و سایت شخصی حرفه‌ای.",
+      ".services-grid .service-card:nth-of-type(6) h3": "ساخت انواع ربات‌ها",
+      ".services-grid .service-card:nth-of-type(6) p": "توسعه ربات‌های تلگرام، اینستاگرام و سایر پلتفرم‌ها.",
+
+"#why-title": "چرا من؟",
+".why-lead": "طراحی که محصولات دیجیتال را مثل یک اثر هنری می‌سازد؛ تمرکز من همیشه روی تجربه کاربری، بهینه‌سازی و هویت بصری است.",
+".why-list li:nth-of-type(1) .why-item h4": "سرعت و عملکرد",
+".why-list li:nth-of-type(1) .why-item p": "کد تمیز، لود سریع و بهترین شیوه‌ها برای عملکرد واقعی سایت.",
+".why-list li:nth-of-type(2) .why-item h4": "تمرکز روی هدف کسب‌وکار",
+".why-list li:nth-of-type(2) .why-item p": "طراحی با هدف تبدیل، تعامل و نمایش حرفه‌ای برند شما.",
+".why-list li:nth-of-type(3) .why-item h4": "دسترسی و تجربه کاربری",
+".why-list li:nth-of-type(3) .why-item p": "رعایت اصول دسترسی، ناوبری روان و تجربه کاربری یکپارچه.",
+".why-cta .btn-primary": "شروع همکاری",
+".why-cta .btn-outline": "نمونه‌کارها",
+".why-card-inner h3": "نتایج قابل اندازه‌گیری",
+".why-card-inner p": "افزایش سرعت صفحه، بهبود نرخ تبدیل و تجربه‌ای که مشتریان دوست دارند.",
+".stat:nth-of-type(1) .stat-num": "+30%",
+".stat:nth-of-type(1) .stat-label": "افزایش تعامل",
+".stat:nth-of-type(2) .stat-num": "+50%",
+".stat:nth-of-type(2) .stat-label": "سرعت لود",
+
+      /* متن‌های hover داخل کارت خدمات */
+      ".service-hover:nth-of-type(1) h3": "UI Design",
+      ".service-hover:nth-of-type(1) p": "ایجاد تجربه بصری دلپذیر و کاربرپسند.",
+      ".service-hover:nth-of-type(2) h3": "Front-End Dev",
+      ".service-hover:nth-of-type(2) p": "ایجاد صفحات وب مدرن و کاربرپسند.",
+      ".service-hover:nth-of-type(3) h3": "Graphic Design",
+      ".service-hover:nth-of-type(3) p": "ایجاد محتوای بصری جذاب و تاثیرگذار.",
+      ".service-hover:nth-of-type(4) h3": "HTML & CSS Coding",
+      ".service-hover:nth-of-type(4) p": "ایجاد ساختار و استایل مدرن برای وب‌سایت‌ها.",
+      ".service-hover:nth-of-type(5) h3": "Personal Website & Resume",
+      ".service-hover:nth-of-type(5) p": "نمایش مهارت‌ها و تجربه‌ها به صورت حرفه‌ای.",
+      ".service-hover:nth-of-type(6) h3": "Bot Development",
+      ".service-hover:nth-of-type(6) p": "اتوماسیون و مدیریت پلتفرم‌ها با ربات‌ها.",
+
+      "#portfolio h2": "نمونه کارها",
+      ".portfolio-item .overlay h3": "نمونه صفحه شخصی",
+      ".portfolio-item .overlay p": "یک وبسایت شخصی با طراحی مدرن و تجربه کاربری ساده و جذاب.",
+      ".view-more": "مشاهده بیشتر",
+
+      "#contact h2": "تماس با من",
+".contact-container a:nth-of-type(1) h3": "تلفن",
+".contact-container a:nth-of-type(1) p": "09159006917",
+".contact-container a:nth-of-type(2) h3": "ایمیل",
+".contact-container a:nth-of-type(2) p": "soon",
+".contact-container a:nth-of-type(3) h3": "تلگرام",
+".contact-container a:nth-of-type(3) p": "@mvhvn_313",
+".contact-container a:nth-of-type(4) h3": "روبیکا",
+".contact-container a:nth-of-type(4) p": "@mvhvn_13",
+
+
+
+      ".footer p": "© ۲۰۲۵ | طراحی و توسعه نوسط ۱۳"
+    },
+
+    en: {
+      "#language-toggle": "العربية",
+      ".logo": "13",
+
+      ".nav .nav-link:nth-of-type(1)": "About Me",
+      ".nav .nav-link:nth-of-type(2)": "Skills",
+      ".nav .nav-link:nth-of-type(3)": "Services",
+      ".nav .nav-link:nth-of-type(4)": "Portfolio",
+      ".nav .nav-link:nth-of-type(5)": "Contact",
+
+      ".name": "13",
+      ".title": "Web Designer & Front-End Developer",
+      ".intro-text p": "Hi! I'm Mahan (13), a creative web designer and front-end developer passionate about crafting unique digital experiences. I blend art and technology to build sites that are beautiful, performant and user-friendly.",
+      ".center-container a[href='#about']": "About Me",
+      ".center-container a[href*='pdfhost']": "Download Resume",
+
+      "#about h2": "About Me",
+      "#about p": "With experience in web design and development, I'm always looking for creative and efficient solutions. I enjoy working with new technologies and believe in continuous learning.",
+      "#about .btn": "Contact Me",
+
+      "#education h2": "Education",
+      ".education-grid .education-card:nth-of-type(1) h3": "Education",
+      ".education-grid .education-card:nth-of-type(1) p": "Currently a 17-year-old 11th-grade computer science student with a strong passion for IT and programming.",
+      ".education-grid .education-card:nth-of-type(2) h3": "Technical Certifications",
+      ".education-grid .education-card:nth-of-type(2) p": "I hold a valid ICDL certificate and a Photoshop certificate.",
+      ".education-grid .education-card:nth-of-type(3) h3": "Coding Certifications",
+      ".education-grid .education-card:nth-of-type(3) p": "I have completed courses in coding and programming, gaining hands-on experience with various languages.",
+
+      ".section.education + .section h2": "Experience",
+      ".education-grid .education-card:nth-of-type(4) h3": "Web Design & Development",
+      ".education-grid .education-card:nth-of-type(4) p": "Over the past few years, I've consistently worked on designing and implementing various websites, focusing on UI and performance.",
+      ".education-grid .education-card:nth-of-type(5) h3": "Graphic Design",
+      ".education-grid .education-card:nth-of-type(5) p": "Experience creating logos, banners and animated visuals to strengthen brand visual identity.",
+      ".education-grid .education-card:nth-of-type(6) h3": "Mobile App Design",
+      ".education-grid .education-card:nth-of-type(6) p": "Solid experience designing and developing mobile apps (Android & iOS) with focus on UX.",
+
+      "#skills h2": "Skills",
+      "#skills + .section h2": "Specialized Skills",
+      "#skills .skill:nth-of-type(1) h3": "HTML",
+      "#skills .skill:nth-of-type(2) h3": "CSS",
+      "#skills .skill:nth-of-type(3) h3": "JavaScript",
+      "#skills .skill:nth-of-type(4) h3": "Tailwind",
+      "#skills .skill:nth-of-type(1) .skill-percent": "90%",
+      "#skills .skill:nth-of-type(2) .skill-percent": "90%",
+      "#skills .skill:nth-of-type(3) .skill-percent": "70%",
+      "#skills .skill:nth-of-type(4) .skill-percent": "80%",
+
+      "#services h2": "My Services",
+      ".services-grid .service-card:nth-of-type(1) h3": "UI Design",
+      ".services-grid .service-card:nth-of-type(1) p": "Beautiful and simple UI design for websites using modern design principles.",
+      ".services-grid .service-card:nth-of-type(2) h3": "Front-End Development",
+      ".services-grid .service-card:nth-of-type(2) p": "Responsive and dynamic web page development using HTML, CSS and JavaScript.",
+      ".services-grid .service-card:nth-of-type(3) h3": "Graphic Design",
+      ".services-grid .service-card:nth-of-type(3) p": "Professional graphic design for logos, banners and visual content.",
+      ".services-grid .service-card:nth-of-type(4) h3": "HTML & CSS Coding",
+      ".services-grid .service-card:nth-of-type(4) p": "Clean and optimized code for structure and styling.",
+      ".services-grid .service-card:nth-of-type(5) h3": "Resume & Personal Website",
+      ".services-grid .service-card:nth-of-type(5) p": "Design and development of professional online resumes and personal websites.",
+      ".services-grid .service-card:nth-of-type(6) h3": "Bot Development",
+      ".services-grid .service-card:nth-of-type(6) p": "Development of bots for Telegram, Instagram and other platforms.",
+
+      ".service-hover:nth-of-type(1) h3": "UI Design",
+      ".service-hover:nth-of-type(1) p": "Creating pleasant and user-friendly visual experiences.",
+      ".service-hover:nth-of-type(2) h3": "Front-End Dev",
+      ".service-hover:nth-of-type(2) p": "Building modern and user-friendly web pages.",
+      ".service-hover:nth-of-type(3) h3": "Graphic Design",
+      ".service-hover:nth-of-type(3) p": "Creating attractive and impactful visual content.",
+      ".service-hover:nth-of-type(4) h3": "HTML & CSS Coding",
+      ".service-hover:nth-of-type(4) p": "Building modern structure and style for websites.",
+      ".service-hover:nth-of-type(5) h3": "Personal Website & Resume",
+      ".service-hover:nth-of-type(5) p": "Showcasing skills and experience professionally.",
+      ".service-hover:nth-of-type(6) h3": "Bot Development",
+      ".service-hover:nth-of-type(6) p": "Automation and platform management with bots.",
+
+      "#portfolio h2": "Portfolio",
+      ".portfolio-item .overlay h3": "Personal Page Example",
+      ".portfolio-item .overlay p": "A personal website with modern design and a simple, attractive UX.",
+      ".view-more": "View More",
+
+"#why-title": "?Why Me",
+".why-lead": "Design that treats digital products like works of art; I focus on UX, optimization and visual identity.",
+".why-list li:nth-of-type(1) .why-item h4": "Speed & Performance",
+".why-list li:nth-of-type(1) .why-item p": "Clean code, fast loading and best practices for real-world performance.",
+".why-list li:nth-of-type(2) .why-item h4": "Business-focused Design",
+".why-list li:nth-of-type(2) .why-item p": "Design that aims for conversions, engagement and professional brand presentation.",
+".why-list li:nth-of-type(3) .why-item h4": "Accessibility & UX",
+".why-list li:nth-of-type(3) .why-item p": "Accessibility-first approach, smooth navigation and consistent user experience.",
+".why-cta .btn-primary": "Start Collaboration",
+".why-cta .btn-outline": "Portfolio",
+".why-card-inner h3": "Measurable Results",
+".why-card-inner p": "Faster pages, improved conversion rates and experiences customers love.",
+".stat:nth-of-type(1) .stat-num": "+30%",
+".stat:nth-of-type(1) .stat-label": "Engagement Increase",
+".stat:nth-of-type(2) .stat-num": "+50%",
+".stat:nth-of-type(2) .stat-label": "Load Speed",
+
+      "#contact h2": "Contact Me",
+      "#contact h2": "Contact Me",
+".contact-container a:nth-of-type(1) h3": "Phone",
+".contact-container a:nth-of-type(1) p": "09159006917",
+".contact-container a:nth-of-type(2) h3": "Email",
+".contact-container a:nth-of-type(2) p": "soon",
+".contact-container a:nth-of-type(3) h3": "Telegram",
+".contact-container a:nth-of-type(3) p": "@mvhvn_313",
+".contact-container a:nth-of-type(4) h3": "Rubika",
+".contact-container a:nth-of-type(4) p": "@mvhvn_13",
+
+
+      ".footer p": "© 2025 | Designed and developed by 13"
+    },
+
+    ar: {
+      "#language-toggle": "فارسي",
+      ".logo": "13",
+
+      ".nav .nav-link:nth-of-type(1)": "من أنا",
+      ".nav .nav-link:nth-of-type(2)": "المهارات",
+      ".nav .nav-link:nth-of-type(3)": "خدماتي",
+      ".nav .nav-link:nth-of-type(4)": "أعمالي",
+      ".nav .nav-link:nth-of-type(5)": "اتصل بي",
+
+      ".name": "13",
+      ".title": "مصمم مواقع ومطور الواجهة الأمامية",
+      ".intro-text p": "مرحباً! أنا ماهان (13)، مصمم مواقع مبدع ومطور واجهة أمامية شغوف بإنشاء تجارب رقمية فريدة تجمع بين الفن والتقنية.",
+      ".center-container a[href='#about']": "من أنا",
+      ".center-container a[href*='pdfhost']": "تحميل السيرة الذاتية",
+
+      "#about h2": "من أنا",
+      "#about p": "لدي خبرة في تصميم وتطوير المواقع وأسعى دائماً لإيجاد حلول إبداعية وفعالة. أستمتع باستخدام التقنيات الحديثة وأؤمن بالتعلم المستمر.",
+      "#about .btn": "اتصل بي",
+
+      "#education h2": "التعليم",
+      ".education-grid .education-card:nth-of-type(1) h3": "التعليم",
+      ".education-grid .education-card:nth-of-type(1) p": "أنا طالب في الصف الحادي عشر تخصص حاسوب، أبلغ من العمر 17 سنة ولدي شغف كبير بتقنية المعلومات والبرمجة.",
+      ".education-grid .education-card:nth-of-type(2) h3": "الشهادات الفنية",
+      ".education-grid .education-card:nth-of-type(2) p": "أحمل شهادة ICDL وشهادة Photoshop التي تؤكد مهاراتي في الحاسوب والتصميم.",
+      ".education-grid .education-card:nth-of-type(3) h3": "شهادات البرمجة",
+      ".education-grid .education-card:nth-of-type(3) p": "حصلت على دورات في الترميز والبرمجة واكتسبت خبرة عملية بلغات متعددة.",
+
+      ".section.education + .section h2": "الخبرة",
+      ".education-grid .education-card:nth-of-type(4) h3": "تصميم وتطوير الويب",
+      ".education-grid .education-card:nth-of-type(4) p": "على مدى السنوات الماضية، عملت في تصميم وتنفيذ مواقع متنوعة مع التركيز على واجهة المستخدم والأداء.",
+      ".education-grid .education-card:nth-of-type(5) h3": "التصميم الجرافيكي",
+      ".education-grid .education-card:nth-of-type(5) p": "خبرة في إنشاء شعارات وبانرات ومحتويات مرئية متحركة لتعزيز الهوية البصرية للعلامة التجارية.",
+      ".education-grid .education-card:nth-of-type(6) h3": "تصميم تطبيقات الجوال",
+      ".education-grid .education-card:nth-of-type(6) p": "خبرة في تصميم وتطوير تطبيقات الجوال (Android و iOS) مع التركيز على تجربة المستخدم.",
+
+      "#skills h2": "المهارات",
+      "#skills + .section h2": "مهارات تخصصية",
+      "#skills .skill:nth-of-type(1) h3": "HTML",
+      "#skills .skill:nth-of-type(2) h3": "CSS",
+      "#skills .skill:nth-of-type(3) h3": "JavaScript",
+      "#skills .skill:nth-of-type(4) h3": "Tailwind",
+      "#skills .skill:nth-of-type(1) .skill-percent": "90٪",
+      "#skills .skill:nth-of-type(2) .skill-percent": "90٪",
+      "#skills .skill:nth-of-type(3) .skill-percent": "70٪",
+      "#skills .skill:nth-of-type(4) .skill-percent": "80٪",
+      "#why-title": "لماذا أنا؟",
+".why-lead": "تصميم يجعل المنتجات الرقمية كأعمال فنية؛ أركّز دائماً على تجربة المستخدم، التحسين والهوية البصرية.",
+".why-list li:nth-of-type(1) .why-item h4": "السرعة والأداء",
+".why-list li:nth-of-type(1) .why-item p": "كود نظيف، تحميل سريع وأفضل الممارسات لأداء فعلي على الويب.",
+".why-list li:nth-of-type(2) .why-item h4": "التصميم الموجه للأعمال",
+".why-list li:nth-of-type(2) .why-item p": "تصميم يهدف إلى التحويل، التفاعل وعرض محترف للعلامة التجارية.",
+".why-list li:nth-of-type(3) .why-item h4": "الوصول وتجربة المستخدم",
+".why-list li:nth-of-type(3) .why-item p": "نهج يضع الوصول أولاً، تنقل سلس وتجربة مستخدم متسقة.",
+".why-cta .btn-primary": "بدء التعاون",
+".why-cta .btn-outline": "أعمالي",
+".why-card-inner h3": "نتائج قابلة للقياس",
+".why-card-inner p": "صفحات أسرع، معدلات تحويل محسّنة وتجارب يحبها المستخدمون.",
+".stat:nth-of-type(1) .stat-num": "+30%",
+".stat:nth-of-type(1) .stat-label": "زيادة التفاعل",
+".stat:nth-of-type(2) .stat-num": "+50%",
+".stat:nth-of-type(2) .stat-label": "سرعة التحميل",
+      "#services h2": "خدماتي",
+      ".services-grid .service-card:nth-of-type(1) h3": "تصميم واجهة المستخدم UI",
+      ".services-grid .service-card:nth-of-type(1) p": "تصميم واجهة جميلة وبسيطة للمواقع باستخدام مبادئ التصميم الحديثة.",
+      ".services-grid .service-card:nth-of-type(2) h3": "تطوير الواجهة الأمامية",
+      ".services-grid .service-card:nth-of-type(2) p": "تطوير صفحات ويب متجاوبة وديناميكية باستخدام HTML و CSS و JavaScript.",
+      ".services-grid .service-card:nth-of-type(3) h3": "التصميم الجرافيكي",
+      ".services-grid .service-card:nth-of-type(3) p": "تصميم جرافيكي احترافي للشعارات والبنرات والمحتوى البصري.",
+      ".services-grid .service-card:nth-of-type(4) h3": "ترميز HTML و CSS",
+      ".services-grid .service-card:nth-of-type(4) p": "كتابة كود نظيف ومحسن لهياكل وأنماط صفحات الويب.",
+      ".services-grid .service-card:nth-of-type(5) h3": "سيرة ذاتية وموقع شخصي",
+      ".services-grid .service-card:nth-of-type(5) p": "تصميم وتطوير سيرة ذاتية إلكترونية وموقع شخصي احترافي.",
+      ".services-grid .service-card:nth-of-type(6) h3": "تطوير الروبوتات",
+      ".services-grid .service-card:nth-of-type(6) p": "تطوير بوتات لتليجرام وإنستجرام ومنصات أخرى.",
+
+      ".service-hover:nth-of-type(1) h3": "UI Design",
+      ".service-hover:nth-of-type(1) p": "إنشاء تجارب بصرية مريحة وسهلة الاستخدام.",
+      ".service-hover:nth-of-type(2) h3": "Front-End Dev",
+      ".service-hover:nth-of-type(2) p": "بناء صفحات ويب حديثة وسهلة الاستخدام.",
+      ".service-hover:nth-of-type(3) h3": "Graphic Design",
+      ".service-hover:nth-of-type(3) p": "إنشاء محتوى بصري جذاب وذو تأثير.",
+      ".service-hover:nth-of-type(4) h3": "HTML & CSS Coding",
+      ".service-hover:nth-of-type(4) p": "بناء هيكل ونمط حديث للمواقع.",
+      ".service-hover:nth-of-type(5) h3": "Personal Website & Resume",
+      ".service-hover:nth-of-type(5) p": "عرض المهارات والخبرات بشكل احترافي.",
+      ".service-hover:nth-of-type(6) h3": "Bot Development",
+      ".service-hover:nth-of-type(6) p": "الأتمتة وإدارة المنصات باستخدام البوتات.",
+
+      "#portfolio h2": "أعمالي",
+      ".portfolio-item .overlay h3": "مثال صفحة شخصية",
+      ".portfolio-item .overlay p": "موقع شخصي بتصميم حديث وتجربة مستخدم بسيطة وجذابة.",
+      ".view-more": "عرض المزيد",
+
+      "#contact h2": "اتصل بي",
+".contact-container a:nth-of-type(1) h3": "الهاتف",
+".contact-container a:nth-of-type(1) p": "09159006917",
+".contact-container a:nth-of-type(2) h3": "البريد الإلكتروني",
+".contact-container a:nth-of-type(2) p": "قريباً",
+".contact-container a:nth-of-type(3) h3": "تلغرام",
+".contact-container a:nth-of-type(3) p": "@mvhvn_313",
+".contact-container a:nth-of-type(4) h3": "روبیکا",
+".contact-container a:nth-of-type(4) p": "@mvhvn_13",
+
+
+      ".footer p": "© ٢٠٢٥ | تصميم وتطوير بواسطة 13"
+    }
+  };
+
+  function applyTranslations(lang) {
+    const map = translations[lang];
+    if (!map) return;
+    Object.entries(map).forEach(([selector, text]) => {
+      try {
+        const els = document.querySelectorAll(selector);
+        if (!els || els.length === 0) return;
+        els.forEach(el => {
+          // برای input/textarea می‌توان placeholder را تغییر داد؛ اینجا فقط textContent جایگزین می‌شود
+          if (el.tagName.toLowerCase() === 'input' || el.tagName.toLowerCase() === 'textarea') {
+            el.placeholder = text;
+          } else {
+            el.textContent = text;
+          }
+        });
+      } catch (e) {
+        console.warn('Translation error for selector:', selector, e);
+      }
+    });
+
+    // ذخیره زبان انتخاب شده
+    localStorage.setItem(STORAGE_KEY, lang);
+  }
+
+  function toggleLanguage() {
+    const idx = langCycle.indexOf(currentLang);
+    currentLang = langCycle[(idx + 1) % langCycle.length];
+    applyTranslations(currentLang);
+  }
+
+  function init() {
+    const btn = document.getElementById('language-toggle');
+    if (!btn) {
+      console.warn('language-toggle button not found');
+      return;
+    }
+    btn.addEventListener('click', toggleLanguage);
+
+    // بارگذاری اولیه ترجمه بر اساس مقدار ذخیره‌شده
+    applyTranslations(currentLang);
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+     const cursor = document.querySelector('.cursor');
+if (cursor) {
+    document.body.style.cursor = 'none';
+    document.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.1,
+            ease: 'power3.out',
+        });
+    });
+}
+const menuToggle = document.getElementById('menu-toggle');
+const nav = document.getElementById('nav');
+menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+});
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            nav.classList.remove('active');
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const skillBars = document.querySelectorAll(".skill-bar");
+    skillBars.forEach(bar => {
+        const percent = bar.getAttribute("data-percent");
+        bar.style.setProperty("--percent", percent);
+    });
+});
+gsap.from(".header", { duration: 1, y: -50, opacity: 0, ease: "power3.out" });
+gsap.from(".section", {
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    stagger: 0.3,
+    ease: "power3.out",
+    scrollTrigger: {
+        trigger: ".section",
+        start: "top 80%",
+    },
+});
+gsap.utils.toArray(".portfolio-item").forEach(item => {
+    gsap.from(item, {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: item,
+            start: "top 80%",
+        },
+    });
+});
+const themeToggler = document.getElementById('theme-toggler');
+const body = document.body;
+themeToggler.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    if (body.classList.contains('dark-theme')) {
+        themeToggler.classList.remove('fa-moon');
+        themeToggler.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        themeToggler.classList.remove('fa-sun');
+        themeToggler.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    body.classList.add('dark-theme');
+    themeToggler.classList.remove('fa-moon');
+    themeToggler.classList.add('fa-sun');
+}
+document.querySelectorAll('.nav-link, .btn[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+            if (window.innerWidth <= 768) {
+                nav.classList.remove('active');
+            }
+        }
+    });
+});
+document.addEventListener('keydown', function(event) {
+
+    if (event.key === 'F12' || 
+
+        (event.ctrlKey && event.shiftKey && event.key === 'I') || 
+
+        (event.ctrlKey && event.key === 'u') || 
+
+        (event.ctrlKey && event.key === 'U')) {
+
+        event.preventDefault();
+
+        alert('شما اجازه استفاده از سورس را ندارید. کپی برداری از سورس با روش های دیگر پیگرد قانونی به همراه دارد.');
+
+    }
+
+});
+
+
+
+document.addEventListener('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    alert('این سایت اجازه این عمل را نمی‌دهد.');
+
+});
+
+
+
+document.addEventListener('keydown', function(event) {
+
+    if ((event.ctrlKey && event.key === 's') || 
+
+        (event.ctrlKey && event.key === 'S')) {
+
+        event.preventDefault();
+
+        alert('این سایت اجازه این عمل را نمی‌دهد.');
+
+    }
+
+});
+/* ====== JS کوچک: جلوگیری از بازنویسی عنوان توسط اسکریپت ترجمه ======
+   اگر از تابع applyTranslations استفاده می‌کنی، این helper را جایگزین set text کن
+*/
+function safeSetText(el, text) {
+  if (!el) return;
+  // اگر خود یا هر والدِ نزدیک دارای data-no-translate یا کلاس no-translate باشد، تغییر نده
+  if (el.closest && el.closest('[data-no-translate], .no-translate')) return;
+  if (el.tagName.toLowerCase() === 'input' || el.tagName.toLowerCase() === 'textarea') {
+    el.placeholder = text;
+  } else {
+    el.textContent = text;
+  }
+}
+
+/* مثال: جایگزینی در ساختار applyTranslations خود */
+Object.entries(map).forEach(([selector, text]) => {
+  try {
+    const els = document.querySelectorAll(selector);
+    if (!els || els.length === 0) return;
+    els.forEach(el => safeSetText(el, text));
+  } catch (e) {
+    console.warn('Translation error for selector:', selector, e);
+  }
+});
+
+    </script>
+</body>
+</html>
