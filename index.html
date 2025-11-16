@@ -74,6 +74,30 @@
             text-decoration: none;
             font-weight: 700;
         }
+    
+        a {
+             color: inherit;  
+             text-decoration: none; 
+            transition: color .18s ease;
+        }
+
+
+.contact-container a,
+.header a,
+.center-container a {
+  color: var(--text-color);  
+  text-decoration: none;
+}
+
+
+a:link,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.center-container a { color: var(--text-color) !important; }
+
         .nav {
             display: flex;
             gap: 2rem;
@@ -103,7 +127,7 @@
             margin-bottom: 4rem;
         }
         .profile {
-            margin-top: 100px;
+            margin-top: 150px;
         }
         .profile-img-container {
             position: relative;
